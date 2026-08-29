@@ -1,0 +1,66 @@
+@import "tailwindcss";
+
+:root {
+  /* Monochrome base: white page, near-black text. */
+  --color-parchment: #ffffff;
+  --color-parchment-dark: #f4f4f3;
+  --color-espresso: #111111;
+  --color-espresso-soft: #525252;
+
+  /* The one accent color on the site — a muted brick/oxblood, not a bright
+     orange — used sparingly for links, the primary CTA, and data highlights. */
+  --color-terracotta: #9a3324;
+  --color-terracotta-hover: #7c2a1d;
+  --color-terracotta-dark: #8a2f22;
+
+  /* Second, purely semantic accent (positive/allowed) for diagrams only —
+     a muted forest green, paired with the accent above for negative/blocked. */
+  --color-sage: #2f5233;
+  --color-sage-dark: #2f5233;
+  --color-amber: #6b6b6b;
+
+  /* Third semantic color for the Systems Map: career/role nodes. Neutral,
+     not a "third accent" — same family as espresso-soft, just distinct
+     enough to read as its own category next to oxblood (project) and
+     forest green (capability). */
+  --color-graphite: #3b4652;
+
+  --background: var(--color-parchment);
+  --foreground: var(--color-espresso);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-parchment: var(--color-parchment);
+  --color-parchment-dark: var(--color-parchment-dark);
+  --color-espresso: var(--color-espresso);
+  --color-espresso-soft: var(--color-espresso-soft);
+  --color-terracotta: var(--color-terracotta);
+  --color-terracotta-hover: var(--color-terracotta-hover);
+  --color-terracotta-dark: var(--color-terracotta-dark);
+  --color-sage: var(--color-sage);
+  --color-sage-dark: var(--color-sage-dark);
+  --color-amber: var(--color-amber);
+  --color-graphite: var(--color-graphite);
+  --font-sans: var(--font-body);
+  --font-display: var(--font-display);
+  --font-mono: var(--font-mono);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
