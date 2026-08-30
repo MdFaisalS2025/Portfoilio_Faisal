@@ -7,9 +7,12 @@ const TYPE_STYLES: Record<
   PositionedNode["type"],
   { size: number; bg: string; ring: string }
 > = {
-  project: { size: 14, bg: "bg-terracotta", ring: "ring-terracotta" },
-  role: { size: 11, bg: "bg-graphite", ring: "ring-graphite" },
-  capability: { size: 6, bg: "bg-sage-dark", ring: "ring-sage-dark" },
+  // Projects are the primary content of the map, so their dot is
+  // noticeably larger than roles/capabilities — a deliberate size
+  // hierarchy, not just three arbitrary values.
+  project: { size: 20, bg: "bg-terracotta", ring: "ring-terracotta" },
+  role: { size: 12, bg: "bg-graphite", ring: "ring-graphite" },
+  capability: { size: 7, bg: "bg-sage-dark", ring: "ring-sage-dark" },
 };
 
 export function MapNode({

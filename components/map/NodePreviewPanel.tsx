@@ -23,10 +23,17 @@ export function NodePreviewPanel({
   nodeId,
   onClose,
   onPin,
+  pathHighlight,
+  emptyState,
 }: {
   nodeId: string | null;
   onClose: () => void;
   onPin: (id: string) => void;
+  pathHighlight?: { id: string; label: string; nodeIds: string[] } | null;
+  /** Overrides the default quick-start list in the empty state — used on
+   * the homepage to surface "Choose a path" here instead of as a separate
+   * section, since visitors need it before/during exploring, not after. */
+  emptyState?: React.ReactNode;
 }) {
   const node = nodeId ? getNode(nodeId) : undefined;
   const reducedMotion = useReducedMotion();
@@ -37,7 +44,51 @@ export function NodePreviewPanel({
       className="border border-espresso/15 bg-parchment px-5 py-4 min-h-[220px]"
     >
       <AnimatePresence mode="wait">
-        {node ? (
+        {!node && pathHighlight ? (
+          <motion.div
+            key={`path-${pathHighlight.id}`}
+            initial={reducedMotion ? false : { opacity: 0, y: 6 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={reducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 4 }}
+            transition={{ duration: reducedMotion ? 0 : 0.15 }}
+          >
+            <div className="flex items-start justify-between gap-3 mb-2">
+              <p className="font-mono text-[11px] uppercase tracking-wide text-espresso-soft">
+                Path
+              </p>
+              <button
+                type="button"
+                onClick={onClose}
+                aria-label="Clear path"
+                className="font-mono text-xs text-espresso-soft hover:text-espresso focus-visible:outline focus-visible:outline-2 focus-visible:outline-terracotta-dark"
+              >
+                ×
+              </button>
+            </div>
+            <h3 className="font-display text-xl font-medium text-espresso mb-3">
+              {pathHighlight.label}
+            </h3>
+            <p className="text-xs text-espresso-soft mb-1.5">Highlighted on the map</p>
+            <ul className="flex flex-col gap-1">
+              {pathHighlight.nodeIds
+                .map((id) => getNode(id))
+                .filter((n): n is GraphNode => !!n)
+                .map((n) => (
+                  <li key={n.id} className="flex items-baseline gap-2">
+                    <span className="font-mono text-[10px] uppercase tracking-wide text-espresso-soft">
+                      {TYPE_LABEL[n.type]}
+                    </span>
+                    <Link
+                      href={n.href ?? "/projects"}
+                      className="text-sm font-medium text-terracotta-dark hover:underline"
+                    >
+                      {n.label}
+                    </Link>
+                  </li>
+                ))}
+            </ul>
+          </motion.div>
+        ) : node ? (
           <motion.div
             key={node.id}
             initial={reducedMotion ? false : { opacity: 0, y: 6 }}
@@ -70,10 +121,9 @@ export function NodePreviewPanel({
             ) : null}
 
             {node.type === "capability" ? <EvidenceList nodeId={node.id} /> : null}
-            {node.type === "project" || node.type === "role" ? (
-              <CapabilitiesList nodeId={node.id} />
-            ) : null}
 
+            {/* Evidence leads for project/role nodes too — the headline
+             * result comes before the capability tag list, not after. */}
             {node.stat ? (
               <p className="mb-3">
                 <span className="font-display text-2xl font-semibold text-terracotta-dark">
@@ -81,6 +131,10 @@ export function NodePreviewPanel({
                 </span>{" "}
                 <span className="text-sm text-espresso-soft">{node.stat.label}</span>
               </p>
+            ) : null}
+
+            {node.type === "project" || node.type === "role" ? (
+              <CapabilitiesList nodeId={node.id} />
             ) : null}
 
             {node.href ? (
@@ -100,26 +154,30 @@ export function NodePreviewPanel({
             exit={reducedMotion ? { opacity: 1 } : { opacity: 0 }}
             transition={{ duration: reducedMotion ? 0 : 0.15 }}
           >
-            <p className="font-mono text-[11px] uppercase tracking-wide text-espresso-soft mb-2">
-              Explore the map
-            </p>
-            <p className="text-sm text-espresso-soft leading-relaxed mb-4">
-              Hover, focus, or click any node to see what it connects to —
-              or start with one of these:
-            </p>
-            <ul className="flex flex-col gap-2">
-              {QUICK_START.map((label) => (
-                <li key={label}>
-                  <button
-                    type="button"
-                    onClick={() => onPin(capabilityId(label))}
-                    className="text-sm font-medium text-terracotta-dark hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-terracotta-dark"
-                  >
-                    {label} →
-                  </button>
-                </li>
-              ))}
-            </ul>
+            {emptyState ?? (
+              <>
+                <p className="font-mono text-[11px] uppercase tracking-wide text-espresso-soft mb-2">
+                  Explore the map
+                </p>
+                <p className="text-sm text-espresso-soft leading-relaxed mb-4">
+                  Hover, focus, or click any node to see what it connects to —
+                  or start with one of these:
+                </p>
+                <ul className="flex flex-col gap-2">
+                  {QUICK_START.map((label) => (
+                    <li key={label}>
+                      <button
+                        type="button"
+                        onClick={() => onPin(capabilityId(label))}
+                        className="text-sm font-medium text-terracotta-dark hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-terracotta-dark"
+                      >
+                        {label} →
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              </>
+            )}
           </motion.div>
         )}
       </AnimatePresence>

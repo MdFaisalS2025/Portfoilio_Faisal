@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { useScrollReveal } from "@/lib/hooks/useScrollReveal";
 
 const STAGES = [
@@ -10,6 +11,7 @@ const STAGES = [
 ];
 
 export function SwissLegalFunnel() {
+  const [showGateLogic, setShowGateLogic] = useState(false);
   const ref = useScrollReveal<HTMLDivElement>((el, tl) => {
     const bars = el.querySelectorAll<HTMLElement>("[data-funnel-bar]");
     const badge = el.querySelector<HTMLElement>("[data-badge]");
@@ -55,6 +57,34 @@ export function SwissLegalFunnel() {
         >
           ✓ Zero fabricated citations in evaluation
         </div>
+
+        <button
+          type="button"
+          onClick={() => setShowGateLogic((v) => !v)}
+          aria-expanded={showGateLogic}
+          className="mt-2 text-left text-sm font-medium text-terracotta-dark hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-terracotta-dark w-fit"
+        >
+          {showGateLogic ? "Hide" : "See"} why a citation is accepted or rejected →
+        </button>
+        {showGateLogic ? (
+          <div className="mt-1 flex flex-col gap-2 text-sm text-espresso-soft max-w-md">
+            <p>
+              <span className="font-medium text-sage-dark">Accepted:</span> the
+              cited article&apos;s retrieved text actually contains the specific
+              rule or figure the answer states — the LLM gate checks the
+              claim against the exact passage, not just the article title.
+            </p>
+            <p>
+              <span className="font-medium text-terracotta-dark">Rejected:</span>{" "}
+              the cited article is topically related but doesn&apos;t contain the
+              specific claim, or no retrieved passage supports it — the gate
+              blocks the answer rather than let a plausible-sounding citation
+              through. &quot;Zero fabricated citations&quot; is this gate&apos;s measured
+              result on the evaluation set, not a guarantee for every
+              possible question.
+            </p>
+          </div>
+        ) : null}
       </div>
 
       <div className="flex flex-col items-center gap-3">

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Section, Eyebrow, Heading } from "@/components/ui/Section";
 import { Badge } from "@/components/ui/Badge";
-import { education, certifications, experience } from "@/lib/data/experience";
+import { education, experience } from "@/lib/data/experience";
 import { roleId } from "@/lib/data/graph";
 
 export const metadata: Metadata = {
@@ -52,7 +52,7 @@ function timelineHref(item: (typeof timeline)[number]) {
 export default function AboutPage() {
   return (
     <>
-      <Section className="pb-8">
+      <Section className="pb-8!">
         <Eyebrow>About</Eyebrow>
         <Heading>Lifelong learner. Founder. Builder at heart.</Heading>
         <p className="text-lg text-espresso-soft max-w-2xl leading-relaxed">
@@ -63,10 +63,10 @@ export default function AboutPage() {
         </p>
       </Section>
 
-      <Section className="pt-0">
-        <h3 className="font-mono text-xs uppercase tracking-wide mb-8 text-terracotta-dark">
+      <Section className="pt-0!">
+        <h2 className="font-mono text-xs uppercase tracking-wide mb-8 text-terracotta-dark">
           The path here
-        </h3>
+        </h2>
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-0 relative">
           {/* connecting line: horizontal on desktop, vertical on mobile */}
           <div
@@ -106,10 +106,10 @@ export default function AboutPage() {
         </div>
       </Section>
 
-      <Section className="pt-0">
-        <h3 className="font-mono text-xs uppercase tracking-wide mb-4 text-terracotta-dark">
+      <Section className="pt-0!">
+        <h2 className="font-mono text-xs uppercase tracking-wide mb-4 text-terracotta-dark">
           Education
-        </h3>
+        </h2>
         <div className="grid gap-4 sm:grid-cols-3 mb-10">
           {education.map((e) => (
             <div key={e.school} className="border border-espresso/10 p-4">
@@ -120,26 +120,19 @@ export default function AboutPage() {
           ))}
         </div>
 
-        <h3 className="font-mono text-xs uppercase tracking-wide mb-4 text-terracotta-dark">
-          Certifications &amp; community
-        </h3>
+        <h2 className="font-mono text-xs uppercase tracking-wide mb-4 text-terracotta-dark">
+          Credentials &amp; community
+        </h2>
         <div className="flex flex-wrap gap-2 mb-4">
-          {certifications.featured.map((c) => (
-            <Badge key={c}>{c}</Badge>
-          ))}
           <Badge>Microsoft Student Ambassador</Badge>
           <Badge>Taught 500+ students</Badge>
         </div>
-        <details className="group">
-          <summary className="cursor-pointer font-mono text-xs uppercase tracking-wide text-espresso-soft hover:text-terracotta-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-terracotta-dark">
-            Additional credentials ({certifications.additional.length})
-          </summary>
-          <div className="flex flex-wrap gap-2 mt-3">
-            {certifications.additional.map((c) => (
-              <Badge key={c}>{c}</Badge>
-            ))}
-          </div>
-        </details>
+        <Link
+          href="/credentials"
+          className="text-sm font-medium text-terracotta-dark hover:underline"
+        >
+          See all certifications, courses, and program completions →
+        </Link>
       </Section>
     </>
   );

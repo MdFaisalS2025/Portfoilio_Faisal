@@ -171,19 +171,5 @@ export const education = [
   },
 ];
 
-export const certifications = {
-  featured: [
-    "Oracle Cloud Infrastructure 2025 Certified Generative AI Professional (Aug 2025 – Aug 2027)",
-    "SnowPro Associate: Platform Certification (Dec 2025 – Dec 2027)",
-    "Career Essentials in Data Analysis by Microsoft and LinkedIn (Feb 2026)",
-    "2026 USF–Microsoft Student Ambassador Program Completion (Apr 2026)",
-  ],
-  additional: [
-    "Deloitte Australia Data Analytics Job Simulation (Aug 2026)",
-    "Developing AI Applications on Azure, Coursera (Jan 2020)",
-    "Microeconomics: The Power of Markets, University of Pennsylvania (Dec 2024)",
-    "AC105x: Financial Accounting and Analysis, IIM Bangalore (Dec 2024)",
-    "Lean Six Sigma White Belt Certification (Oct 2020)",
-    "Project Management Essentials (Oct 2020)",
-  ],
-};
+// Certifications now live in lib/data/credentials.ts (grouped, typed, with
+// a dedicated /credentials page) — see that file instead of this one.

@@ -1,7 +1,7 @@
 export function Footer() {
   return (
     <footer className="border-t border-espresso/10 mt-24">
-      <div className="mx-auto max-w-5xl px-6 py-10 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-espresso-soft">
+      <div className="mx-auto max-w-[var(--container-wide)] px-[var(--gutter)] py-10 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-espresso-soft">
         <p>© {new Date().getFullYear()} Mohamed Faisal Sindhi.</p>
         <div className="flex items-center gap-5">
           <a

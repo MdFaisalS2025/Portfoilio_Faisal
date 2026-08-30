@@ -116,10 +116,18 @@ export function ControlHubFederatedDiagram() {
           <span>Model weight updates only</span>
         </div>
         <div className="pt-4 border-t border-espresso/10">
-          <div className="font-display text-4xl font-semibold text-terracotta-dark" data-counter>
+          <div
+            className="font-display text-4xl font-semibold text-terracotta-dark"
+            data-counter
+            aria-hidden="true"
+          >
             $0K
           </div>
-          <p className="text-sm text-espresso-soft mt-1">Projected annual savings</p>
+          <span className="sr-only">$400K (projected, not measured)</span>
+          <p className="text-sm text-espresso-soft mt-1">
+            Projected annual savings — modeled from the detection rate, not a
+            measured production result.
+          </p>
         </div>
       </div>
     </div>

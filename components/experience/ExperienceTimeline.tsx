@@ -46,18 +46,18 @@ export function ExperienceTimeline() {
               <div className="flex flex-wrap items-baseline justify-between gap-2 mb-1">
                 {role.specialization ? (
                   <div>
-                    <h3 className="font-display text-xl font-medium text-espresso">
+                    <h2 className="font-display text-xl font-medium text-espresso">
                       {role.title}
-                    </h3>
+                    </h2>
                     <p className="text-base font-medium text-terracotta-dark">
                       {role.specialization}
                     </p>
                     <p className="text-sm text-espresso-soft">{role.org}</p>
                   </div>
                 ) : (
-                  <h3 className="font-display text-xl font-medium text-espresso">
+                  <h2 className="font-display text-xl font-medium text-espresso">
                     {role.title} · {role.org}
-                  </h3>
+                  </h2>
                 )}
                 <span className="font-mono text-xs text-espresso-soft whitespace-nowrap">
                   {role.period}

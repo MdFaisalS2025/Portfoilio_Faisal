@@ -73,9 +73,9 @@ export function ProjectsList() {
                       ))}
                     </div>
                   ) : null}
-                  <h3 className="font-display text-2xl font-medium text-espresso group-hover:text-terracotta-dark transition-colors mb-1">
+                  <h2 className="font-display text-2xl font-medium text-espresso group-hover:text-terracotta-dark transition-colors mb-1">
                     {project.name}
-                  </h3>
+                  </h2>
                   <p className="text-sm text-espresso-soft mb-2 max-w-lg">{project.tagline}</p>
                   <p className="font-mono text-xs text-espresso-soft">{project.timeframe}</p>
                 </div>

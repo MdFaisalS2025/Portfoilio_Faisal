@@ -27,6 +27,12 @@
 
   --background: var(--color-parchment);
   --foreground: var(--color-espresso);
+
+  /* Layout shell: two container widths instead of one narrow global column.
+     Prose stays readable; interactive/visual sections get real room. */
+  --container-prose: 64rem; /* ~1024px, unchanged from the original site */
+  --container-wide: 1800px;
+  --gutter: clamp(1.5rem, 4vw, 4rem);
 }
 
 @theme inline {
@@ -63,4 +69,130 @@ body {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+/* A thin top-of-viewport bar that fills as the reader scrolls, via CSS
+   scroll-driven animation only — no scroll listener. Nonessential, so under
+   reduced motion it's simply hidden — no special exemption from the site's
+   blanket reduced-motion rule above, which already forces every animation
+   to 0.01ms (that would otherwise make the bar snap to nearly full width
+   the instant any scrolling starts, which is why it's hidden outright
+   rather than left to render that way). */
+.reading-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--color-terracotta-dark);
+  transform-origin: left;
+  transform: scaleX(0);
+  z-index: 50;
+  pointer-events: none;
+  animation: reading-progress-fill linear forwards;
+  animation-timeline: scroll(root block);
+}
+
+@keyframes reading-progress-fill {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@supports not (animation-timeline: scroll()) {
+  .reading-progress {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reading-progress {
+    display: none;
+  }
+}
+
+/* Systems Map edge draw-in — see components/map/MapEdge.tsx. Skipped
+   entirely (not just shortened) under reduced motion: MapEdge itself never
+   sets this animation's inline style in that case, so `@keyframes` here is
+   simply unused rather than needing its own reduced-motion override. */
+@keyframes map-edge-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* One restrained scroll-driven reveal: each field of a research note (the
+   Research question / Motivation / Hypothesis / Method / Finding /
+   Limitation / Next experiment sequence) rises and fades in as it enters the
+   viewport, via `animation-timeline: view()` — no IntersectionObserver, no
+   dependency. Browsers without support, and reduced-motion users, get the
+   complete final state immediately rather than a delayed or half-run
+   animation. */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(12px);
+  animation: scroll-reveal-in linear both;
+  animation-timeline: view();
+  animation-range: entry 0% entry 40%;
+}
+
+@keyframes scroll-reveal-in {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@supports not (animation-timeline: view()) {
+  .scroll-reveal {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+}
+
+/* Restrained systems-oriented backdrop: fine coordinate lines + a sparser
+   grid layer, both static and very low-contrast. No JS, no gradients,
+   no motion — a texture, not a decoration that competes with reading. */
+.bg-systems-grid {
+  background-image:
+    repeating-linear-gradient(
+      to right,
+      rgba(17, 17, 17, 0.05) 0,
+      rgba(17, 17, 17, 0.05) 1px,
+      transparent 1px,
+      transparent 96px
+    ),
+    repeating-linear-gradient(
+      to bottom,
+      rgba(17, 17, 17, 0.05) 0,
+      rgba(17, 17, 17, 0.05) 1px,
+      transparent 1px,
+      transparent 96px
+    ),
+    repeating-linear-gradient(
+      to right,
+      rgba(17, 17, 17, 0.03) 0,
+      rgba(17, 17, 17, 0.03) 1px,
+      transparent 1px,
+      transparent 16px
+    ),
+    repeating-linear-gradient(
+      to bottom,
+      rgba(17, 17, 17, 0.03) 0,
+      rgba(17, 17, 17, 0.03) 1px,
+      transparent 1px,
+      transparent 16px
+    );
 }

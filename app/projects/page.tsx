@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Section, Eyebrow, Heading } from "@/components/ui/Section";
 import { ProjectsList } from "@/components/projects/ProjectsList";
+import { ProjectArchive } from "@/components/projects/ProjectArchive";
 
 export const metadata: Metadata = {
   title: "Projects · Mohamed Faisal Sindhi",
@@ -11,10 +12,13 @@ export const metadata: Metadata = {
 
 export default function ProjectsPage() {
   return (
-    <Section>
+    <Section wide>
       <Eyebrow>Selected work</Eyebrow>
       <Heading>Projects</Heading>
       <ProjectsList />
+      <div className="mt-16">
+        <ProjectArchive />
+      </div>
     </Section>
   );
 }

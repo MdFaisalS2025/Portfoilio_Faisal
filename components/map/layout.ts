@@ -1,32 +1,33 @@
-import { graphNodes, graphEdges, type GraphNode } from "@/lib/data/graph";
+import { graphNodes, graphEdges, CAPABILITY_CATEGORIES, type GraphNode } from "@/lib/data/graph";
 
 export type PositionedNode = GraphNode & { x: number; y: number };
 
-export const VIEW_WIDTH = 1200;
-export const VIEW_HEIGHT = 760;
+// Sized for a near-full-bleed desktop map (see SystemsMap) — wide and tall
+// enough that rebalancing the node grid, not a CSS scale transform, is what
+// makes labels legible at the larger rendered size.
+export const VIEW_WIDTH = 1760;
+export const VIEW_HEIGHT = 820;
 
-const COLUMN_X: Record<GraphNode["type"], number> = {
-  capability: 150,
-  project: 600,
-  role: 1050,
-};
-
-const PADDING_Y = 60;
-
-// The capability list is long enough (50+ real skills, one per role/project
-// evidence) that a single vertical column packs nodes too close together to
-// meet a real touch/click target size — so capabilities lay out as a grid
-// (a handful of columns spanning a band) instead of one dense line. Project
-// and role counts stay small enough for a single column to have plenty of
-// room on its own.
-const CAPABILITY_BAND = { left: 60, right: 340 };
-const CAPABILITY_MAX_ROWS = 13;
+// Tightened from the previous pass: less dead space between the three
+// groups, and project nodes get their own effective "lane" width even
+// though they're a single column, so their (larger, see MapNode) dots and
+// always-visible labels have room without crowding the role column.
+export const CAPABILITY_BAND = { left: 70, right: 720 };
+export const PROJECT_X = 1000;
+export const ROLE_X = 1560;
+export const HEADING_Y = 28;
+const PADDING_Y = 90;
 
 /**
- * Deterministic layout (capability grid | project column | role column) —
- * no physics simulation, so it's stable, testable, and identical every
+ * Deterministic layout (capability clusters | project column | role column)
+ * — no physics simulation, so it's stable, testable, and identical every
  * render (important for SSR/hydration and for keyboard-nav order to make
  * visual sense).
+ *
+ * Capabilities are laid out one column per evidence-backed category (see
+ * CAPABILITY_CATEGORIES), not just packed row-major — so the resting state
+ * already reads as five labeled clusters instead of an unexplained grid of
+ * dots. See the column headings rendered in SystemsMap for the labels.
  */
 export function computeLayout(): PositionedNode[] {
   const byType: Record<GraphNode["type"], GraphNode[]> = {
@@ -37,37 +38,58 @@ export function computeLayout(): PositionedNode[] {
   for (const node of graphNodes) byType[node.type].push(node);
 
   const positioned: PositionedNode[] = [];
+  const usableHeight = VIEW_HEIGHT - PADDING_Y * 2;
 
-  for (const type of ["project", "role"] as const) {
+  for (const [type, x] of [
+    ["project", PROJECT_X],
+    ["role", ROLE_X],
+  ] as const) {
     const nodes = byType[type];
-    const usableHeight = VIEW_HEIGHT - PADDING_Y * 2;
     const step = nodes.length > 1 ? usableHeight / (nodes.length - 1) : 0;
     const startY = nodes.length > 1 ? PADDING_Y : VIEW_HEIGHT / 2;
     nodes.forEach((node, i) => {
-      positioned.push({ ...node, x: COLUMN_X[type], y: startY + step * i });
+      positioned.push({ ...node, x, y: startY + step * i });
     });
   }
 
-  const capabilities = byType.capability;
-  const columns = Math.max(1, Math.ceil(capabilities.length / CAPABILITY_MAX_ROWS));
-  const rows = Math.ceil(capabilities.length / columns);
-  const usableHeight = VIEW_HEIGHT - PADDING_Y * 2;
-  const rowStep = rows > 1 ? usableHeight / (rows - 1) : 0;
+  const categories = CAPABILITY_CATEGORIES;
   const colStep =
-    columns > 1 ? (CAPABILITY_BAND.right - CAPABILITY_BAND.left) / (columns - 1) : 0;
-  const startY = rows > 1 ? PADDING_Y : VIEW_HEIGHT / 2;
+    categories.length > 1
+      ? (CAPABILITY_BAND.right - CAPABILITY_BAND.left) / (categories.length - 1)
+      : 0;
+  const maxCategorySize = Math.max(
+    ...categories.map(
+      (cat) => byType.capability.filter((n) => n.categories?.includes(cat)).length
+    )
+  );
+  const rowStep = maxCategorySize > 1 ? usableHeight / (maxCategorySize - 1) : 0;
 
-  capabilities.forEach((node, i) => {
-    const col = Math.floor(i / rows);
-    const row = i % rows;
-    positioned.push({
-      ...node,
-      x: CAPABILITY_BAND.left + colStep * col,
-      y: startY + rowStep * row,
+  categories.forEach((cat, colIndex) => {
+    const inCategory = byType.capability.filter((n) => n.categories?.includes(cat));
+    inCategory.forEach((node, rowIndex) => {
+      positioned.push({
+        ...node,
+        x: CAPABILITY_BAND.left + colStep * colIndex,
+        y: PADDING_Y + rowStep * rowIndex,
+      });
     });
   });
 
   return positioned;
+}
+
+/** Category label x-positions, matching computeLayout's column math exactly
+ * — used to render the capability cluster headings above the grid. */
+export function capabilityColumnPositions(): { category: string; x: number }[] {
+  const categories = CAPABILITY_CATEGORIES;
+  const colStep =
+    categories.length > 1
+      ? (CAPABILITY_BAND.right - CAPABILITY_BAND.left) / (categories.length - 1)
+      : 0;
+  return categories.map((category, i) => ({
+    category,
+    x: CAPABILITY_BAND.left + colStep * i,
+  }));
 }
 
 export function edgesWithPositions(positioned: PositionedNode[]) {

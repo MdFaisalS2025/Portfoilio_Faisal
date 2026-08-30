@@ -1,32 +1,56 @@
 import { Section } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
-import { StatCallout } from "@/components/ui/StatCallout";
 import { HeroReveal } from "@/components/home/HeroReveal";
-import { SystemsMapSection } from "@/components/map/SystemsMapSection";
+import { HomeSystemsMapSection } from "@/components/home/HomeSystemsMapSection";
+import { FeaturedWork } from "@/components/home/FeaturedWork";
+import { CurrentlyBuilding } from "@/components/home/CurrentlyBuilding";
+import { ResearchLog } from "@/components/home/ResearchLog";
+import { CredentialsPreview } from "@/components/home/CredentialsPreview";
+import { ArchivePreview } from "@/components/home/ArchivePreview";
 
 export default function HomePage() {
   return (
     <>
-      <Section className="pt-10 pb-6">
+      <Section wide className="pt-10! pb-6! bg-systems-grid">
         <HeroReveal />
       </Section>
 
-      <Section className="pt-0 pb-16">
-        <p className="font-mono text-xs uppercase tracking-wide text-espresso-soft mb-4">
-          The systems map — projects, roles, and capabilities, connected
+      <Section wide className="pt-0! pb-16! bg-systems-grid">
+        <h2 className="font-mono text-xs uppercase tracking-wide text-espresso-soft mb-2">
+          The systems map
+        </h2>
+        <p className="text-sm text-espresso-soft max-w-2xl mb-6">
+          Every project, role, and capability below is one real, connected
+          graph — not a decoration. Hover or click a node to see what it
+          connects to, choose a path suited to why you&apos;re here, or expand
+          it to explore full-screen.
         </p>
-        <SystemsMapSection />
+        <HomeSystemsMapSection />
       </Section>
 
-      <Section className="pt-0">
-        <div className="grid gap-4 sm:grid-cols-3">
-          <StatCallout value="2.7 hrs" label="Earlier deterioration detection than NEWS2" />
-          <StatCallout value="0" label="Fabricated citations across 175K legal articles" />
-          <StatCallout value="$400K" label="Projected annual savings from federated maintenance model" />
+      <Section className="pt-0!">
+        <FeaturedWork />
+      </Section>
+
+      <Section className="pt-0!">
+        <h2 className="font-mono text-xs uppercase tracking-wide text-espresso-soft mb-6">
+          Now
+        </h2>
+        <div className="grid gap-12 md:grid-cols-2">
+          <CurrentlyBuilding />
+          <ResearchLog />
         </div>
       </Section>
 
-      <Section className="pt-0 flex flex-col items-start gap-4">
+      <Section className="pt-0!">
+        <CredentialsPreview />
+      </Section>
+
+      <Section className="pt-0!">
+        <ArchivePreview />
+      </Section>
+
+      <Section className="pt-0! flex flex-col items-start gap-4">
         <h2 className="font-display text-2xl md:text-3xl font-medium text-espresso">
           Founder. Builder. Still shipping.
         </h2>

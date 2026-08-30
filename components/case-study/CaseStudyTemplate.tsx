@@ -5,14 +5,16 @@ import { StatCallout } from "@/components/ui/StatCallout";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { ConnectedStrip } from "./ConnectedStrip";
+import { EvidenceGallery } from "./EvidenceGallery";
+import { ReadingProgress } from "@/components/layout/ReadingProgress";
 import type { CaseStudyVariant } from "./layoutVariants";
 
 function Annotation({ title, text }: { title: string; text: string }) {
   return (
     <div>
-      <h3 className="font-mono text-xs uppercase tracking-wide mb-2 text-terracotta-dark">
+      <h2 className="font-mono text-xs uppercase tracking-wide mb-2 text-terracotta-dark">
         {title}
-      </h3>
+      </h2>
       <p className="text-espresso-soft leading-relaxed">{text}</p>
     </div>
   );
@@ -51,7 +53,8 @@ export function CaseStudyTemplate({
 }) {
   return (
     <>
-      <Section className="pb-8">
+      <ReadingProgress />
+      <Section className="pb-8!">
         <Link
           href="/projects"
           className="text-sm text-espresso-soft hover:text-terracotta-dark"
@@ -90,7 +93,13 @@ export function CaseStudyTemplate({
 
       <Body project={project} diagram={diagram} variant={variant} />
 
-      <Section className="pt-16">
+      {project.evidenceImages && project.evidenceImages.length > 0 ? (
+        <Section className="pt-0!">
+          <EvidenceGallery images={project.evidenceImages} />
+        </Section>
+      ) : null}
+
+      <Section className="pt-16!">
         <div className="flex flex-wrap gap-3">
           <Button href="/projects" variant="secondary">
             Back to all projects
@@ -126,7 +135,7 @@ function Body({
     // Setup first, then the mechanism, then the payoff — reads like the
     // pipeline itself: text before diagram before results.
     return (
-      <Section className="pt-0 flex flex-col gap-12">
+      <Section className="pt-0! flex flex-col gap-12">
         <div className="grid gap-10 md:grid-cols-2">
           <Annotation title="Problem" text={project.problem} />
           <Annotation title="Approach" text={project.approach} />
@@ -144,7 +153,7 @@ function Body({
     // Diagram is the centerpiece; Problem/Approach flank it as marginal
     // notes on either side rather than sitting above it.
     return (
-      <Section className="pt-0 flex flex-col gap-12">
+      <Section className="pt-0! flex flex-col gap-12">
         <div className="grid gap-8 lg:grid-cols-[1fr_2fr_1fr] items-start">
           <Annotation title="Problem" text={project.problem} />
           {diagram ? <DiagramFrame architectureNote={project.architectureNote}>{diagram}</DiagramFrame> : null}
@@ -162,7 +171,7 @@ function Body({
     // The diagram itself tapers vertically, so the annotations run down a
     // narrow sidebar beside it instead of a two-column block above it.
     return (
-      <Section className="pt-0 flex flex-col gap-12">
+      <Section className="pt-0! flex flex-col gap-12">
         <div className="grid gap-8 lg:grid-cols-[3fr_1fr] items-start">
           {diagram ? <DiagramFrame architectureNote={project.architectureNote}>{diagram}</DiagramFrame> : null}
           <div className="flex flex-col gap-8">
@@ -182,7 +191,7 @@ function Body({
     // A quadrant split: problem/approach stacked on the left, the
     // aggregator diagram large on the right.
     return (
-      <Section className="pt-0 flex flex-col gap-12">
+      <Section className="pt-0! flex flex-col gap-12">
         <div className="grid gap-8 lg:grid-cols-[1fr_2fr] items-start">
           <div className="flex flex-col gap-8">
             <Annotation title="Problem" text={project.problem} />
@@ -203,7 +212,7 @@ function Body({
     // full-width, with Problem/Approach/Results as three equal columns
     // underneath rather than an aside.
     return (
-      <Section className="pt-0 flex flex-col gap-12">
+      <Section className="pt-0! flex flex-col gap-12">
         {diagram ? <DiagramFrame architectureNote={project.architectureNote}>{diagram}</DiagramFrame> : null}
         <div className="grid gap-10 md:grid-cols-3">
           <Annotation title="Problem" text={project.problem} />
@@ -220,7 +229,7 @@ function Body({
   // two-column band beneath — the diagram itself carries the compliance
   // disclaimer, so no separate annotation is needed for that.
   return (
-    <Section className="pt-0 flex flex-col gap-12">
+    <Section className="pt-0! flex flex-col gap-12">
       {diagram ? <DiagramFrame architectureNote={project.architectureNote}>{diagram}</DiagramFrame> : null}
       <div className="grid gap-10 md:grid-cols-2">
         <Annotation title="Problem" text={project.problem} />
