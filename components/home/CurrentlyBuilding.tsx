@@ -5,7 +5,7 @@ const ITEMS = [
     title: "RAEY",
     status: "Pre-launch",
     description:
-      "Source-cited AI answers for hospital SOPs. Publishes its own research log, including what hasn't worked yet.",
+      "Source-cited AI answers for hospital SOPs, tested against a 218-case evaluation before anything ships.",
     href: "/projects/raey",
   },
   {

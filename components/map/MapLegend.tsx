@@ -20,7 +20,7 @@ export function MapLegend({ className }: { className?: string }) {
       ))}
       <span className="flex items-center gap-1.5 text-xs text-espresso-soft">
         <span className="inline-block w-4 h-px bg-espresso/40" aria-hidden="true" />
-        Real connection
+        Documented connection
       </span>
     </div>
   );

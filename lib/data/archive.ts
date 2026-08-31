@@ -10,7 +10,7 @@ export type ArchiveEntry = {
 };
 
 /**
- * Smaller, credible entries that don't justify a full case study — each one
+ * Smaller, credible entries that don't justify a full case study. Each one
  * verified against its own public repository README before being added
  * here. Curated deliberately small: several other public repos exist but
  * were excluded as coursework wrapper apps too thin to add real signal (see
@@ -68,7 +68,7 @@ export const archiveEntries: ArchiveEntry[] = [
     domain: "Applied ML / sustainability",
     role: "Coursework project (ISM 6136)",
     outcome:
-      "An ML workflow — cleaning, feature engineering, and modeling — predicting NYC buildings' Energy Star Score from Local Law 84 disclosure data, aimed at flagging buildings for energy audits.",
+      "An ML workflow (cleaning, feature engineering, and modeling) predicting NYC buildings' Energy Star Score from Local Law 84 disclosure data, aimed at flagging buildings for energy audits.",
     evidenceSource: "Public GitHub repository, README",
     href: "https://github.com/MdFaisalS2025/ISM-6136_ML-Project",
     capabilities: ["Applied Machine Learning", "Python"],

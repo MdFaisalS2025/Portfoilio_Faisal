@@ -71,13 +71,13 @@ export function SwissLegalFunnel() {
             <p>
               <span className="font-medium text-sage-dark">Accepted:</span> the
               cited article&apos;s retrieved text actually contains the specific
-              rule or figure the answer states — the LLM gate checks the
+              rule or figure the answer states. The LLM gate checks the
               claim against the exact passage, not just the article title.
             </p>
             <p>
               <span className="font-medium text-terracotta-dark">Rejected:</span>{" "}
               the cited article is topically related but doesn&apos;t contain the
-              specific claim, or no retrieved passage supports it — the gate
+              specific claim, or no retrieved passage supports it. The gate
               blocks the answer rather than let a plausible-sounding citation
               through. &quot;Zero fabricated citations&quot; is this gate&apos;s measured
               result on the evaluation set, not a guarantee for every

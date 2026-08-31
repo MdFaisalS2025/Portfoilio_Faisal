@@ -12,18 +12,18 @@ export const metadata: Metadata = {
   alternates: { canonical: "/about" },
 };
 
-/** Each milestone links to the real role or project it maps to — the same
+/** Each milestone links to the real role or project it maps to, the same
  * underlying data as the Systems Map and Experience page, not a decorative
  * timeline disconnected from the rest of the site. */
 const timeline = [
   {
     place: "Manama, Bahrain",
-    text: "Started out as a sales operations intern, tracing supply-chain workflows from manufacturing to retail and learning to find the real gap before proposing a fix.",
+    text: "Started out as a sales operations intern, tracing supply-chain workflows from manufacturing to retail and learning to find the gap before proposing a fix.",
     org: "United National Dairy Company (Rayan)",
   },
   {
     place: "Chennai, India",
-    text: "Started in SEO and WordPress development, learning how real users actually behave on the web one Google Ads report at a time.",
+    text: "Started in SEO and WordPress development, learning how users actually behave on the web, one Google Ads report at a time.",
     org: "TechResx Technologies",
   },
   {
@@ -57,9 +57,9 @@ export default function AboutPage() {
         <Heading>Lifelong learner. Founder. Builder at heart.</Heading>
         <p className="text-lg text-espresso-soft max-w-2xl leading-relaxed">
           I keep shipping across very different domains: web, blockchain,
-          healthcare AI, applied machine learning, because I&apos;d rather learn by
-          building the real thing than by staying in one lane. Curiosity stays
-          constant while the stack keeps changing.
+          healthcare AI, applied machine learning, because I&apos;d rather learn
+          a stack by building in it than by staying in one lane. Curiosity
+          stays constant while the stack keeps changing.
         </p>
       </Section>
 

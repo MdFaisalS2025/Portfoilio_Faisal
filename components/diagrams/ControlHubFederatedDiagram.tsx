@@ -125,7 +125,7 @@ export function ControlHubFederatedDiagram() {
           </div>
           <span className="sr-only">$400K (projected, not measured)</span>
           <p className="text-sm text-espresso-soft mt-1">
-            Projected annual savings — modeled from the detection rate, not a
+            Projected annual savings, modeled from the detection rate, not a
             measured production result.
           </p>
         </div>

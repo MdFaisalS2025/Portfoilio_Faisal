@@ -7,7 +7,7 @@ import { researchNotes, researchLinks, researchLogRepoUrl } from "@/lib/data/res
 export const metadata: Metadata = {
   title: "Research · Mohamed Faisal Sindhi",
   description:
-    "Readable research notes from RAEY's public research log — research question, method, findings, and limitations, extracted from the source documents.",
+    "Readable research notes from RAEY's public research log: research question, method, findings, and limitations, extracted from the source documents.",
   alternates: { canonical: "/research" },
 };
 
@@ -29,7 +29,7 @@ export default function ResearchPage() {
       <Eyebrow>Research log</Eyebrow>
       <Heading>Research</Heading>
       <p className="text-lg text-espresso-soft leading-relaxed max-w-2xl mb-4">
-        These aren&apos;t peer-reviewed publications — they&apos;re working
+        These aren&apos;t peer-reviewed publications; they&apos;re working
         notes from RAEY&apos;s research process, read directly from the
         source documents and paraphrased here for readability. Nothing below
         is quoted or concluded beyond what the source actually says.
@@ -98,9 +98,9 @@ export default function ResearchPage() {
             Additional source documents
           </h2>
           <p className="text-sm text-espresso-soft mb-4 max-w-xl">
-            Verified, real documents from the same research repository —
-            linked directly rather than summarized, since a full read-through
-            of each is still pending.
+            Documents from the same research repository, linked directly
+            rather than summarized since a full read-through of each is
+            still pending.
           </p>
           <ul className="flex flex-col gap-3">
             {researchLinks.map((link) => (

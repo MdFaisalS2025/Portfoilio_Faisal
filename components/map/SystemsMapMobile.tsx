@@ -52,7 +52,7 @@ function FilterChip({
   );
 }
 
-/** Which tab (if any) has at least one node in this journey — used to jump
+/** Which tab (if any) has at least one node in this journey, used to jump
  * to a tab that actually shows something the moment a journey is picked. */
 function firstTabWithMatches(journey: Path): Tab | null {
   for (const t of TABS) {
@@ -68,11 +68,11 @@ function firstTabWithMatches(journey: Path): Tab | null {
  * different interaction entirely: three tabs (default Projects) instead of
  * one endless Projects → Roles → 52-Capabilities scroll. Capabilities gets
  * its own search + category filter since it's the only group large enough
- * to need one — a tapped row's connections still render only once opened.
+ * to need one, and a tapped row's connections still render only once opened.
  *
  * The five homepage "Choose a path" journeys are offered here too, as a
  * compact <select> rather than the desktop's five-button row (which would
- * either overflow or wrap awkwardly at this width) — picking one filters
+ * either overflow or wrap awkwardly at this width). Picking one filters
  * the current tab down to that journey's nodes instead of animating a
  * graph, since there's no graph here to animate.
  */
@@ -85,8 +85,8 @@ export function SystemsMapMobile() {
 
   const journey = useMemo(() => PATHS.find((p) => p.id === journeyId) ?? null, [journeyId]);
 
-  // Restores a shared #node=/#path= link into this mobile UI directly —
-  // deliberately never opens the desktop-only expanded map dialog.
+  // Restores a shared #node=/#path= link into this mobile UI directly,
+  // deliberately never opening the desktop-only expanded map dialog.
   useEffect(() => {
     function apply() {
       const hash = readMapHash();
@@ -283,7 +283,7 @@ export function SystemsMapMobile() {
           })}
           {visibleNodes.length === 0 && journey ? (
             <li className="py-6 text-sm text-espresso-soft text-center">
-              No {tab.toLowerCase()} in the {journey.label} path — try another tab.
+              No {tab.toLowerCase()} in the {journey.label} path. Try another tab.
             </li>
           ) : tab === "Capabilities" && visibleNodes.length === 0 ? (
             <li className="py-6 text-sm text-espresso-soft text-center">
@@ -297,7 +297,7 @@ export function SystemsMapMobile() {
         href="/projects"
         className="font-mono text-xs text-espresso-soft hover:text-terracotta-dark underline underline-offset-4 self-center"
       >
-        Skip the map — browse projects as a list
+        Skip the map: browse projects as a list
       </Link>
     </div>
   );

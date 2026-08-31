@@ -3,16 +3,19 @@ import type { Project } from "@/lib/data/projects";
 
 const KIND_LABEL: Record<NonNullable<Project["evidenceImages"]>[number]["kind"], string> = {
   "live-screenshot": "Live screenshot",
-  // Exact required phrasing — never implies the mock-provider output is a
-  // production deployment or real hospital information.
-  "local-demonstration": "Local product demonstration using mock provider and synthetic SOP data",
+  // Deliberately generic: this label is shared across every project with a
+  // "local-demonstration" image, not just RAEY, so it can't claim anything
+  // project-specific (mock provider, SOP data) that wouldn't be true for
+  // all of them. Each project's own caption states its specific synthetic
+  // or mock details explicitly instead.
+  "local-demonstration": "Local demonstration",
 };
 
-/** Real visual evidence only — every image here is either a screenshot of
- * a live public deployment or a locally run instance of the actual
- * application, never a mockup or stock interface. The `kind` prefix on
- * each caption makes the distinction explicit rather than letting a
- * screenshot imply more deployment status than is true. */
+/** Every image here is either a screenshot of a live public deployment or a
+ * locally run instance of the actual application, never a mockup or stock
+ * interface. The `kind` prefix on each caption makes the distinction
+ * explicit rather than letting a screenshot imply more deployment status
+ * than is true. */
 export function EvidenceGallery({ images }: { images: NonNullable<Project["evidenceImages"]> }) {
   if (images.length === 0) return null;
 
@@ -29,9 +32,9 @@ export function EvidenceGallery({ images }: { images: NonNullable<Project["evide
             </div>
             <figcaption className="p-3 text-xs text-espresso-soft leading-relaxed">
               <span className="font-mono uppercase tracking-wide text-terracotta-dark">
-                {KIND_LABEL[img.kind]}
+                {KIND_LABEL[img.kind]}:
               </span>{" "}
-              — {img.caption}
+              {img.caption}
             </figcaption>
           </figure>
         ))}

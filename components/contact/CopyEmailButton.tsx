@@ -36,7 +36,7 @@ export function CopyEmailButton() {
         {status === "copied"
           ? "Email address copied to clipboard"
           : status === "failed"
-            ? "Copy failed — use the email link instead"
+            ? "Copy failed. Use the email link instead."
             : ""}
       </span>
     </button>

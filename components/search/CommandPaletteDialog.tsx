@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { buildSearchIndex, type SearchItem } from "@/lib/data/searchIndex";
 
 const INDEX = buildSearchIndex();
@@ -31,6 +31,7 @@ export function CommandPaletteDialog({
   const inputRef = useRef<HTMLInputElement>(null);
   const triggerRef = useRef<HTMLElement | null>(initialTrigger);
   const router = useRouter();
+  const pathname = usePathname();
 
   const results = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -47,7 +48,21 @@ export function CommandPaletteDialog({
 
   function navigateTo(item: SearchItem) {
     closePalette();
-    router.push(item.href);
+    // A capability result's href is `/#node=...`. Next's router updates a
+    // same-page hash via `history.pushState`, which never fires a native
+    // `hashchange` event, so the map's hash-restoration listeners (see
+    // mapHash.ts / useExpandedMapFromHash.ts) would silently miss it while
+    // already on "/". Setting `location.hash` directly does fire
+    // `hashchange`, so that path is used whenever we're already home;
+    // `router.push` still handles every other (real page) navigation.
+    if (item.href.startsWith("/#") && pathname === "/") {
+      // `history.pushState`/`replaceState` don't fire `hashchange`, and that
+      // event is exactly what the map's restoration listeners need.
+      // eslint-disable-next-line react-hooks/immutability
+      window.location.hash = item.href.slice(1);
+    } else {
+      router.push(item.href);
+    }
   }
 
   useEffect(() => {

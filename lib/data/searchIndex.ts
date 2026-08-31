@@ -3,14 +3,15 @@ import { archiveEntries } from "./archive";
 import { experience } from "./experience";
 import { credentials } from "./credentials";
 import { researchNotes } from "./research";
-import { roleId } from "./graph";
+import { roleId, capabilityNodes } from "./graph";
 
 export type SearchResultType =
   | "Project"
   | "Archive project"
   | "Role"
   | "Credential"
-  | "Research note";
+  | "Research note"
+  | "Capability";
 
 export type SearchItem = {
   type: SearchResultType;
@@ -47,6 +48,17 @@ export function buildSearchIndex(): SearchItem[] {
 
   for (const note of researchNotes) {
     items.push({ type: "Research note", title: note.title, href: "/research" });
+  }
+
+  // Sourced from the graph's own capability nodes, not a second list — a
+  // capability here always traces back to a real role/project field.
+  for (const node of capabilityNodes) {
+    items.push({
+      type: "Capability",
+      title: node.label,
+      subtitle: node.categories?.[0],
+      href: `/#node=${node.id}`,
+    });
   }
 
   return items;

@@ -27,6 +27,7 @@ export const CAPABILITY_CATEGORIES = [
   "Systems & Engineering",
   "Healthcare & Teaching",
   "Leadership & Operations",
+  "Web & Growth",
 ] as const;
 
 export type CapabilityCategory = (typeof CAPABILITY_CATEGORIES)[number];
@@ -91,6 +92,9 @@ const CATEGORY_BY_CAPABILITY: Record<string, CapabilityCategory[]> = {
   "Process Improvement": ["Leadership & Operations"],
   "Customer Behavior": ["Leadership & Operations"],
   "Retail Operations": ["Leadership & Operations"],
+
+  SEO: ["Web & Growth"],
+  WordPress: ["Web & Growth"],
 };
 
 export type GraphEdge = {

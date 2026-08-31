@@ -14,10 +14,10 @@ const TYPE_LABEL: Record<GraphNode["type"], string> = {
 const QUICK_START = ["Healthcare AI", "Trustworthy Retrieval", "Technical Leadership"];
 
 /**
- * A persistent side panel, not a floating overlay — it sits beside the map
+ * A persistent side panel, not a floating overlay. It sits beside the map
  * (see SystemsMap) so it never covers a node or edge. When nothing is
  * selected it still does something useful: explains how to explore and
- * offers three real starting points instead of an empty box.
+ * offers three starting points instead of an empty box.
  */
 export function NodePreviewPanel({
   nodeId,
@@ -30,7 +30,7 @@ export function NodePreviewPanel({
   onClose: () => void;
   onPin: (id: string) => void;
   pathHighlight?: { id: string; label: string; nodeIds: string[] } | null;
-  /** Overrides the default quick-start list in the empty state — used on
+  /** Overrides the default quick-start list in the empty state, used on
    * the homepage to surface "Choose a path" here instead of as a separate
    * section, since visitors need it before/during exploring, not after. */
   emptyState?: React.ReactNode;
@@ -122,7 +122,7 @@ export function NodePreviewPanel({
 
             {node.type === "capability" ? <EvidenceList nodeId={node.id} /> : null}
 
-            {/* Evidence leads for project/role nodes too — the headline
+            {/* Evidence leads for project/role nodes too: the headline
              * result comes before the capability tag list, not after. */}
             {node.stat ? (
               <p className="mb-3">
@@ -160,7 +160,7 @@ export function NodePreviewPanel({
                   Explore the map
                 </p>
                 <p className="text-sm text-espresso-soft leading-relaxed mb-4">
-                  Hover, focus, or click any node to see what it connects to —
+                  Hover, focus, or click any node to see what it connects to,
                   or start with one of these:
                 </p>
                 <ul className="flex flex-col gap-2">
@@ -186,7 +186,7 @@ export function NodePreviewPanel({
 }
 
 /** For a capability node: every real role or project it was actually used
- * or demonstrated in — the "evidence" behind the skill. */
+ * or demonstrated in, the "evidence" behind the skill. */
 function EvidenceList({ nodeId }: { nodeId: string }) {
   const evidence = neighborsOf(nodeId)
     .map((id) => getNode(id))

@@ -12,11 +12,11 @@ export const metadata: Metadata = {
 export default function CredentialsPage() {
   return (
     <Section>
-      <Eyebrow>Verified credentials</Eyebrow>
+      <Eyebrow>By domain</Eyebrow>
       <Heading>Credentials</Heading>
       <p className="text-lg text-espresso-soft leading-relaxed max-w-2xl mb-12">
         Grouped by domain, not chronology. Each entry shows the issuer, what
-        kind of credential it is, and when it was issued — credential IDs
+        kind of credential it is, and when it was issued. Credential IDs
         are kept private.
       </p>
 

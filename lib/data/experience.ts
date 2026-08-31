@@ -128,6 +128,7 @@ export const experience: Role[] = [
       "Increased site traffic 20% and average session duration 25% within three months through SEO and Google Ads analysis.",
       "Developed and customized WordPress sites in PHP with third-party API integrations.",
     ],
+    capabilities: ["SEO", "WordPress"],
   },
   {
     org: "United National Dairy Company (Rayan)",
