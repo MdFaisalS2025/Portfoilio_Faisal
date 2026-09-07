@@ -42,6 +42,38 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    slug: "accesspath",
+    name: "AccessPath",
+    tagline: "Pedestrian routing that separates missing evidence from accessible streets",
+    stack: ["Python", "FastAPI", "PostGIS", "React", "MapLibre"],
+    timeframe: "Sep 2026",
+    problem:
+      "Most route planners optimize distance and quietly treat streets with no accessibility data as if they were known to be usable. For someone navigating curb ramps, missing sidewalks, obstacles, or damaged surfaces, that uncertainty matters.",
+    approach:
+      "I built a Seattle routing prototype over 213K OpenStreetMap pedestrian segments and 262K Project Sidewalk labels. It compares shortest, accessibility-optimized, and confidence-aware routes while keeping unknown, low-confidence, and disputed evidence separate. Adversarial testing exposed a flaw in my first weighted-average score: enough positive reports could outvote one reliable report of no sidewalk. I replaced it with a dominance-aware risk model that preserves severe hazards instead of averaging them away.",
+    architectureNote:
+      "An offline spatial pipeline matches crowdsourced labels to the pedestrian graph in PostGIS. Reliability and hazard-dominance rules score each segment, FastAPI runs three A* searches with different edge costs, and React with MapLibre shows the routes and the uncertainty behind each one.",
+    results:
+      "In a frozen set of eight curated examples, five of seven connected pairs produced different route choices. Confidence-aware routing reduced exposure to completely unknown segments whenever an alternative existed, but increased exposure to low-confidence evidence in three of those five cases. This is a research prototype, not a safety-certified navigation tool, and the small evaluation does not establish citywide effectiveness.",
+    stats: [
+      { label: "Crowdsourced labels", value: "262K" },
+      { label: "Pedestrian segments", value: "213K" },
+      { label: "Connected pairs with route divergence", value: "5 of 7" },
+    ],
+    demoUrl: "https://accesspath-silk.vercel.app/",
+    repoUrl: "https://github.com/MdFaisalS2025/accesspath",
+    capabilities: ["Geospatial Routing", "Evaluation"],
+    domains: ["Data Products", "Accessibility"],
+    evidenceImages: [
+      {
+        src: "/images/case-studies/accesspath-route-comparison.png",
+        alt: "AccessPath live map comparing shortest, accessibility-optimized, and confidence-aware pedestrian routes in Seattle",
+        caption: "The public demo comparing three real routes. It exposes documented hazards, unknown coverage, confidence, and any graph-snap adjustment instead of presenting one route as universally safe.",
+        kind: "live-screenshot",
+      },
+    ],
+  },
+  {
     slug: "raey",
     name: "RAEY",
     tagline: "Source-cited AI answers for hospital SOPs",

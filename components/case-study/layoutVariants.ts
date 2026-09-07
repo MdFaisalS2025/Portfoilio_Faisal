@@ -10,6 +10,7 @@ export type CaseStudyVariant =
   | "fusion-annotated";
 
 export const CASE_STUDY_VARIANTS: Record<string, CaseStudyVariant> = {
+  accesspath: "demo-stacked",
   raey: "pipeline-horizontal",
   sentinel: "radial-side",
   "swiss-legal-rag": "funnel-stacked",

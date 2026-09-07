@@ -57,8 +57,13 @@ const CATEGORY_BY_CAPABILITY: Record<string, CapabilityCategory[]> = {
   "Applied Machine Learning": ["Data & Modeling"],
   "Spectral Analysis": ["Data & Modeling"],
   "Cost Modeling": ["Data & Modeling"],
+  PostGIS: ["Data & Modeling"],
+  "Geospatial Routing": ["Data & Modeling", "Systems & Engineering"],
 
   Python: ["Systems & Engineering"],
+  FastAPI: ["Systems & Engineering"],
+  React: ["Systems & Engineering"],
+  MapLibre: ["Systems & Engineering"],
   "C++": ["Systems & Engineering"],
   "Next.js": ["Systems & Engineering"],
   Docker: ["Systems & Engineering"],
