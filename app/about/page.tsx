@@ -124,7 +124,7 @@ export default function AboutPage() {
           Credentials &amp; community
         </h2>
         <div className="flex flex-wrap gap-2 mb-4">
-          <Badge>Microsoft Student Ambassador</Badge>
+          <Badge>Microsoft Student Ambassador Intern, USF IT</Badge>
           <Badge>Taught 500+ students</Badge>
         </div>
         <Link

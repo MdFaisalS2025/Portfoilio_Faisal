@@ -1,4 +1,6 @@
 export type Role = {
+  /** Stable map identity when a role's public title or organization changes. */
+  id?: string;
   org: string;
   title: string;
   /** Optional sub-line under `title` for a role whose full title would
@@ -60,10 +62,11 @@ export const experience: Role[] = [
     ],
   },
   {
-    org: "Microsoft",
-    title: "Microsoft Student Ambassador",
+    id: "role-microsoft-microsoft-student-ambassador",
+    org: "University of South Florida, Information Technology (USF IT)",
+    title: "Microsoft Student Ambassador Intern",
     location: "Tampa, Florida",
-    period: "Jan 2026 – Present",
+    period: "Dec 2025 – Dec 2026 (expected)",
     bullets: [
       "Led discovery with USF Graduate Advising, documented the requirements, and delivered a Microsoft 365 workflow the team could operate independently.",
       "Consolidated manual records into one system covering 100% of recruiting events, reducing duplicate entry and saving 3 to 4 staff hours per month.",

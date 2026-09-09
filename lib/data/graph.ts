@@ -112,7 +112,7 @@ function slugify(input: string) {
 }
 
 export function roleId(role: Role) {
-  return `role-${slugify(`${role.org}-${role.title}`)}`;
+  return role.id ?? `role-${slugify(`${role.org}-${role.title}`)}`;
 }
 
 export function capabilityId(name: string) {

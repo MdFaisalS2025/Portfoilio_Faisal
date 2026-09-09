@@ -9,7 +9,7 @@ function role(org: string) {
 
 const RAEY_FOUNDER = role("RAEY");
 const GRAD_TA = role("University of South Florida, Muma College of Business");
-const MICROSOFT = role("Microsoft");
+const MICROSOFT = role("University of South Florida, Information Technology (USF IT)");
 const RESEARCH_ASSISTANT = role("University of South Florida");
 const VEE4 = role("Vee4 Software");
 const TECHRESX = role("TechResx Technologies");
