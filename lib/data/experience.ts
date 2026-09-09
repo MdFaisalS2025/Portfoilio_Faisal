@@ -63,11 +63,12 @@ export const experience: Role[] = [
   },
   {
     id: "role-microsoft-microsoft-student-ambassador",
-    org: "University of South Florida, Information Technology (USF IT)",
+    org: "USF Information Technology (USF IT)",
     title: "Microsoft Student Ambassador Intern",
     location: "Tampa, Florida",
-    period: "Dec 2025 – Dec 2026 (expected)",
+    period: "Dec 2025 – Dec 2026",
     bullets: [
+      "The Microsoft Student Ambassador program transitioned into a USF IT internship with academic credit through IDS 3947.",
       "Led discovery with USF Graduate Advising, documented the requirements, and delivered a Microsoft 365 workflow the team could operate independently.",
       "Consolidated manual records into one system covering 100% of recruiting events, reducing duplicate entry and saving 3 to 4 staff hours per month.",
     ],
