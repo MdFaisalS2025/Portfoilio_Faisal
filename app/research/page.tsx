@@ -2,12 +2,12 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Section, Eyebrow, Heading } from "@/components/ui/Section";
 import { ReadingProgress } from "@/components/layout/ReadingProgress";
-import { researchNotes, researchLinks, researchLogRepoUrl } from "@/lib/data/research";
+import { researchNotes, researchLinks, researchLogRepoUrl, publications, orcid } from "@/lib/data/research";
 
 export const metadata: Metadata = {
   title: "Research · Mohamed Faisal Sindhi",
   description:
-    "Readable research notes from RAEY's public research log: research question, method, findings, and limitations, extracted from the source documents.",
+    "Preprints, submitted manuscripts and working research notes.",
   alternates: { canonical: "/research" },
 };
 
@@ -26,22 +26,73 @@ export default function ResearchPage() {
   return (
     <Section>
       <ReadingProgress />
-      <Eyebrow>Research log</Eyebrow>
+      <Eyebrow>Research</Eyebrow>
       <Heading>Research</Heading>
       <p className="text-lg text-espresso-soft leading-relaxed max-w-2xl mb-4">
-        These aren&apos;t peer-reviewed publications; they&apos;re working
-        notes from RAEY&apos;s research process, read directly from the
-        source documents and paraphrased here for readability. Nothing below
-        is quoted or concluded beyond what the source actually says.
+        Three public preprints, two manuscripts under submission, and the
+        working notes behind them. Preprints are not peer reviewed. I report
+        what didn&apos;t work next to what did.
       </p>
-      <a
-        href={researchLogRepoUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="text-sm font-medium text-terracotta-dark hover:underline"
-      >
-        See the full public research repository →
-      </a>
+      <div className="flex flex-wrap gap-x-6 gap-y-2">
+        <a
+          href={orcid.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-sm font-medium text-terracotta-dark hover:underline"
+        >
+          ORCID {orcid.id} ↗
+        </a>
+        <a
+          href={researchLogRepoUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-sm font-medium text-terracotta-dark hover:underline"
+        >
+          See the full public research repository →
+        </a>
+      </div>
+
+      <h2 className="font-mono text-xs uppercase tracking-wide text-terracotta-dark mt-12 mb-4">
+        Preprints and manuscripts
+      </h2>
+      <ol className="flex flex-col gap-5 list-none p-0">
+        {publications.map((p) => (
+          <li key={p.id} className="border-t border-espresso/10 pt-4">
+            <p className="font-mono text-[11px] uppercase tracking-wide text-espresso-soft mb-1">
+              {p.id} · {p.status === "submitted" ? "Submitted, public record pending" : "Preprint"}
+            </p>
+            <p className="font-medium text-espresso">{p.title}</p>
+            <p className="text-sm text-espresso-soft">
+              {p.authors} · {p.venue}, {p.year}
+            </p>
+            <div className="flex gap-4 mt-1">
+              {p.href ? (
+                <a
+                  href={p.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm font-medium text-terracotta-dark hover:underline"
+                >
+                  Read preprint ↗
+                </a>
+              ) : null}
+              {p.altHref ? (
+                <a
+                  href={p.altHref.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-espresso-soft hover:text-terracotta-dark"
+                >
+                  {p.altHref.label} ↗
+                </a>
+              ) : null}
+            </div>
+          </li>
+        ))}
+      </ol>
+      <h2 className="font-mono text-xs uppercase tracking-wide text-terracotta-dark mt-16 mb-2">
+        Working notes
+      </h2>
 
       <div className="flex flex-col gap-16 mt-12">
         {researchNotes.map((note) => (
