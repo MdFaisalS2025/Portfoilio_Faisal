@@ -73,4 +73,26 @@ export const archiveEntries: ArchiveEntry[] = [
     href: "https://github.com/MdFaisalS2025/ISM-6136_ML-Project",
     capabilities: ["Applied Machine Learning", "Python"],
   },
+  {
+    name: "EchoTrace",
+    year: "2026",
+    domain: "Anomaly detection / audio",
+    role: "Solo builder",
+    outcome:
+      "A local-first app that screens industrial fan recordings for acoustic anomalies using a convolutional autoencoder trained on DCASE 2020 Task 2 data. The deployed model is labeled experimental: it scored a macro ROC-AUC of 0.5598 and did not reach the 0.7084 of the reproduced DCASE baseline on the same held-out data. It screens for anomalies and does not diagnose faults.",
+    evidenceSource: "Public GitHub repository, README",
+    href: "https://github.com/MdFaisalS2025/EchoTrace",
+    capabilities: ["Python", "FastAPI", "Evaluation"],
+  },
+  {
+    name: "SignalForge",
+    year: "2026",
+    domain: "Observability / incident response",
+    role: "Solo builder",
+    outcome:
+      "A local demo that correlates OpenTelemetry traces, metrics and logs for a faulty Payments deployment into an incident and an evidence-cited diagnosis, built with Go, Python and Next.js. Diagnosis uses a fixed rule, remediation is not implemented, and no evaluation results are reported yet.",
+    evidenceSource: "Public GitHub repository, README",
+    href: "https://github.com/MdFaisalS2025/signalforge",
+    capabilities: ["Python", "Next.js", "Docker"],
+  },
 ];
