@@ -18,9 +18,14 @@ export default function ExperiencePage() {
         Click a capability tag on any role to see where else it shows up.
       </p>
       <div className="mb-10">
-        <Button href="/resume.pdf" variant="primary">
-          Download résumé (PDF)
-        </Button>
+        <div className="flex flex-wrap gap-3">
+          <Button href="/resume.pdf" variant="primary">
+            Résumé (PDF)
+          </Button>
+          <Button href="/cv.pdf" variant="secondary">
+            Research CV (PDF)
+          </Button>
+        </div>
       </div>
 
       <ExperienceTimeline />

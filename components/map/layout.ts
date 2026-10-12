@@ -59,6 +59,10 @@ const ROLE_CHARS_PER_LINE = 21; // matches MapNode's 170px role-label wrap width
 const PROJECT_CHARS_PER_LINE = 22; // matches MapNode's 180px project-label wrap width at text-[13px]
 const LABEL_LINE_HEIGHT_PX = 15.6; // 13px font * the real 1.2 line-height (see MapNode's text-[13px]/[1.2])
 export const LABEL_VERTICAL_PADDING_PX = 20; // matches MapNode's button p-2.5 (top+bottom)
+// A project node's button stacks its dot above its label (flex-col, gap-2),
+// so its box is taller than the label alone by the dot plus that 8px gap.
+// Roles put the dot beside the label, so they add nothing.
+const PROJECT_DOT_STACK_PX = DOT_SIZE.project + 8;
 const MIN_ROW_GAP_PX = 20; // leaves room for the 4px focus-outline offset + 2px outline on each side
 
 function estimateLineCount(label: string, charsPerLine: number): number {
@@ -123,11 +127,15 @@ function packLane(
       : [VIEW_HEIGHT / 2];
   }
 
+  const stackPx = type === "project" ? PROJECT_DOT_STACK_PX : 0;
   const heightsPx = nodes.map((n) => {
     const measured = measuredHeights?.get(n.id);
-    return measured != null
-      ? measured + LABEL_VERTICAL_PADDING_PX
-      : estimateLabelHeightPx(n.label, charsPerLine);
+    return (
+      stackPx +
+      (measured != null
+        ? measured + LABEL_VERTICAL_PADDING_PX
+        : estimateLabelHeightPx(n.label, charsPerLine))
+    );
   });
   const totalPx = heightsPx.reduce((a, b) => a + b, 0) + MIN_ROW_GAP_PX * Math.max(0, nodes.length - 1);
   const extraPx = Math.max(0, availableHeightPx - totalPx);
@@ -159,11 +167,15 @@ function packLane(
 export function requiredLaneHeightPx(measuredHeights: Map<string, number> | null): number {
   const laneHeight = (type: "role" | "project", charsPerLine: number) => {
     const nodes = graphNodes.filter((n) => n.type === type);
+    const stackPx = type === "project" ? PROJECT_DOT_STACK_PX : 0;
     const heights = nodes.map((n) => {
       const measured = measuredHeights?.get(n.id);
-      return measured != null
-        ? measured + LABEL_VERTICAL_PADDING_PX
-        : estimateLabelHeightPx(n.label, charsPerLine);
+      return (
+        stackPx +
+        (measured != null
+          ? measured + LABEL_VERTICAL_PADDING_PX
+          : estimateLabelHeightPx(n.label, charsPerLine))
+      );
     });
     return heights.reduce((a, b) => a + b, 0) + MIN_ROW_GAP_PX * Math.max(0, nodes.length - 1);
   };

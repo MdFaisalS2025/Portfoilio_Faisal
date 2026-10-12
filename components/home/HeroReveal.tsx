@@ -41,9 +41,9 @@ export function HeroReveal() {
           transition={{ duration: 0.4, delay: reducedMotion ? 0 : 0.16 }}
           className="text-lg leading-relaxed text-espresso-soft mb-6"
         >
-          Founder of{" "}
-          <span className="font-medium text-terracotta-dark">RAEY</span>. AI
-          engineer building trustworthy, source-cited systems.
+          AI researcher and engineer building trustworthy, source-cited
+          systems. Founder of{" "}
+          <span className="font-medium text-terracotta-dark">RAEY</span>.
         </motion.p>
         <motion.div
           initial={initial}
@@ -58,7 +58,7 @@ export function HeroReveal() {
             Résumé
           </Button>
           <Button href="/cv.pdf" variant="secondary">
-            CV
+            Research CV
           </Button>
           <Button href="/contact" variant="secondary">
             Contact

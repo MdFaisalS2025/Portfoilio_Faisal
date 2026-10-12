@@ -227,14 +227,14 @@ export function SystemsMap({
 
       <div
         className={cn(
-          "flex flex-col lg:flex-row gap-6",
-          fillHeight ? "lg:flex-1 lg:min-h-0" : "items-start"
+          "flex flex-col gap-6",
+          fillHeight ? "xl:flex-row xl:flex-1 xl:min-h-0" : "lg:flex-row items-start"
         )}
       >
         <div
           className={cn(
-            "relative w-full flex flex-col gap-2 lg:flex-1 lg:min-w-0",
-            fillHeight && "lg:h-full"
+            "relative w-full flex flex-col gap-2",
+            fillHeight ? "xl:flex-1 xl:min-w-0 xl:h-full" : "lg:flex-1 lg:min-w-0"
           )}
           style={fillHeight ? undefined : { aspectRatio: `${VIEW_WIDTH} / ${VIEW_HEIGHT}` }}
         >
@@ -357,8 +357,10 @@ export function SystemsMap({
 
         <div
           className={cn(
-            "w-full lg:w-[clamp(18rem,24vw,26rem)] lg:flex-shrink-0",
-            fillHeight && "lg:h-full lg:overflow-y-auto"
+            "w-full",
+            fillHeight
+              ? "xl:w-[clamp(18rem,24vw,26rem)] xl:flex-shrink-0 xl:h-full xl:overflow-y-auto"
+              : "lg:w-[clamp(18rem,24vw,26rem)] lg:flex-shrink-0"
           )}
         >
           <NodePreviewPanel

@@ -19,7 +19,7 @@ export default function OpengraphImage() {
         }}
       >
         <div style={{ display: "flex", fontSize: 30, color: "#9a3324", marginBottom: 20 }}>
-          Tampa, Florida
+          Tampa, Florida · M.S. AI & Business Analytics, USF
         </div>
         <div
           style={{
@@ -41,8 +41,8 @@ export default function OpengraphImage() {
             fontFamily: "Arial, sans-serif",
           }}
         >
-          Founder of RAEY, designer of SENTINEL, and an AI engineer working
-          across healthcare, legal retrieval, and federated learning.
+          AI researcher and engineer. Three public preprints on evaluating LLM
+          systems, and source-cited retrieval for healthcare and policy.
         </div>
       </div>
     ),
