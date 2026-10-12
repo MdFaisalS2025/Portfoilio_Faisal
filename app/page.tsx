@@ -6,6 +6,7 @@ import { CurrentlyBuilding } from "@/components/home/CurrentlyBuilding";
 import { ResearchLog } from "@/components/home/ResearchLog";
 import { CredentialsPreview } from "@/components/home/CredentialsPreview";
 import { ArchivePreview } from "@/components/home/ArchivePreview";
+import { WhatIGotWrong } from "@/components/home/WhatIGotWrong";
 
 export default function HomePage() {
   return (
@@ -49,6 +50,10 @@ export default function HomePage() {
       </Section>
 
       <Section className="pt-0!">
+        <WhatIGotWrong />
+      </Section>
+
+      <Section className="pt-0!">
         <CredentialsPreview />
       </Section>
 
@@ -61,9 +66,9 @@ export default function HomePage() {
           Founder. Builder. Still shipping.
         </h2>
         <p className="text-espresso-soft max-w-xl leading-relaxed">
-          From SEO work in Chennai to blockchain engineering in the UAE to
-          founding RAEY in Tampa, I&apos;ve learned each stack by shipping
-          something in it.
+          From a dairy company in Bahrain to SEO in Chennai to blockchain in
+          the UAE to founding RAEY in Tampa, I learn each stack by shipping in
+          it, and I write down what broke.
         </p>
         <div className="flex flex-wrap gap-3">
           <Button href="/about" variant="secondary">

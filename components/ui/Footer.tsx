@@ -21,6 +21,22 @@ export function Footer() {
             GitHub
           </a>
           <a
+            href="https://orcid.org/0009-0000-1348-0566"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-terracotta-dark transition-colors"
+          >
+            ORCID
+          </a>
+          <a
+            href="/cv.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-terracotta-dark transition-colors"
+          >
+            CV
+          </a>
+          <a
             href="mailto:faisalmd543@gmail.com"
             className="hover:text-terracotta-dark transition-colors"
           >

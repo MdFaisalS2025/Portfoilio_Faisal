@@ -27,6 +27,7 @@ export const experience: Role[] = [
     bullets: [
       "Founded RAEY to make hospital SOPs searchable through source-cited AI answers. Led product discovery and built the full stack across retrieval, verification, Next.js, and Docker.",
       "Made trust the product requirement: every answer cites its source, while a 218-case evaluation catches 85% of answers with unsafe errors and passes 82% of valid answers.",
+      "Tested on synthetic SOPs only, not clinically validated. Met several times with a doctor at Moffitt Cancer Center to explain the problem and use case and to discuss how RAEY would need to change for real physician use.",
     ],
     projectSlug: "raey",
     capabilities: [
@@ -43,6 +44,19 @@ export const experience: Role[] = [
     ],
   },
   {
+    org: "Solely Active",
+    title: "Technical Product Lead",
+    specialization: "Prelaunch venture",
+    location: "Remote",
+    period: "Sep 2026 – Present",
+    bullets: [
+      "PlateProof, my independent project, was taken up by Solely Active, a sports and wellness venture.",
+      "Lead technology and product direction for its Active Twin concept and coordinate an international team of three exploring food recognition, recommendations, and careful handling of personal data.",
+    ],
+    projectSlug: "plateproof",
+    capabilities: ["Technical Leadership", "Product Discovery", "Team Coordination"],
+  },
+  {
     org: "University of South Florida, Muma College of Business",
     title: "Graduate Teaching Assistant",
     specialization: "Healthcare AI Research & Instruction",
@@ -50,7 +64,7 @@ export const experience: Role[] = [
     period: "May 2026 – Present",
     bullets: [
       "Leading development of a Hospital SOP Intelligence Platform using generative AI and intelligent retrieval, and engineered SENTINEL, a 6-agent system that flags patient deterioration, explains the cause, and suggests next steps. Detected deterioration 2.7 hours earlier than NEWS2 on synthetic patient data.",
-      "Benchmarked four reasoning approaches on accuracy, lead time, and cost; the rule-based baseline performed best. Supported instruction, grading, and student engagement across two graduate courses with 500+ students, including Power BI and Tableau.",
+      "Benchmarked four reasoning approaches on accuracy, lead time, and cost; the rule-based baseline performed best. Assisted with instruction and grading for AI & Analytics (CAI 3801; one section in Summer 2026, three in Fall 2026) and Data Analytics for Business (QMB 3302; Summer 2026), helping students with Power BI and Tableau across sections with combined enrollment above 500.",
     ],
     projectSlug: "sentinel",
     capabilities: [
@@ -86,10 +100,11 @@ export const experience: Role[] = [
     org: "University of South Florida",
     title: "Research Assistant - Applied Machine Learning",
     location: "Tampa, Florida",
-    period: "Jan 2025 – Jan 2026",
+    period: "Jan 2025 – Jan 2026; Aug 2026 – Present",
     bullets: [
       "Classified Mg-doped ZnO samples from photoluminescence spectra using PCA and Random Forest in Python. Two components captured over 95% of the variance.",
       "Established the lab's first automated baseline at 0.72 mean accuracy under cross-validation, replacing manual interpretation of spectra.",
+      "Since Aug 2026, exploring DOpO2 and dissolved oxygen measurement using spectrometers (early stage). Advisors: Dr. Ehsan Sheybani and Dr. Arash Takshi.",
     ],
     capabilities: [
       "Spectral Analysis",
@@ -157,12 +172,12 @@ export const education = [
   {
     school: "University of South Florida",
     degree: "M.S., Artificial Intelligence and Business Analytics",
-    period: "2025 – 2027",
+    period: "Expected Dec 2026 · GPA 3.86/4.00",
   },
   {
     school: "College of Engineering, Anna University",
     degree: "B.E., Computer Science and Engineering",
-    period: "Aug 2015 – 2020",
+    period: "Aug 2015 – Nov 2020",
   },
   {
     school: "Besant Technologies, Chennai",

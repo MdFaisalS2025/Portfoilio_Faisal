@@ -44,6 +44,29 @@ export const researchNotes: ResearchNote[] = [
     relatedProjectSlug: "raey",
     relatedCapabilities: ["Trustworthy Retrieval", "Verification", "Evaluation"],
   },
+  {
+    slug: "tracing-recommendations-across-protocol-editions",
+    title: "Can each recommendation in a clinical protocol be traced to the next edition?",
+    researchQuestion:
+      "Can each recommendation in a state EMS clinical protocol be traced to its counterpart in the next edition?",
+    motivation:
+      "Protocol editions are revised, reordered and renumbered. Matching by identifier alone loses recommendations that move.",
+    hypothesis:
+      "Hypotheses and analyses were prespecified and the method was frozen before any test documents were retrieved.",
+    method:
+      "A frozen matching method compared against matching by identifier alone and against a simpler text matcher, evaluated on held-out protocol editions. The analysis plan, full results and a reproducibility package are public.",
+    finding:
+      "The method kept more recommendations connected across editions than identifier matching alone, but a simpler text matcher did just as well.",
+    limitation:
+      "Recommendations that moved between sections remained unsolved. This is the problem I most want to solve next.",
+    nextExperiment:
+      "Target the moved-recommendation cases directly rather than improving the overall match rate.",
+    sourceUrl:
+      "https://github.com/MdFaisalS2025/RAEY-SOP-Research/tree/master/reproducibility_artifact",
+    sourceLabel: "Reproducibility package",
+    relatedProjectSlug: "raey",
+    relatedCapabilities: ["Evaluation", "Verification"],
+  },
 ];
 
 export type ResearchLink = {
@@ -72,3 +95,72 @@ export const researchLinks: ResearchLink[] = [
 ];
 
 export const researchLogRepoUrl = "https://github.com/MdFaisalS2025/RAEY-SOP-Research";
+
+export type Publication = {
+  id: "P1" | "P2" | "P3" | "S1" | "S2";
+  title: string;
+  authors: string;
+  venue: string;
+  year: string;
+  status: "preprint" | "submitted";
+  /** DOI URL; omitted for submitted manuscripts (no public record yet). */
+  href?: string;
+  /** Earlier version, when the CV lists one. */
+  altHref?: { label: string; href: string };
+};
+
+export const orcid = {
+  id: "0009-0000-1348-0566",
+  url: "https://orcid.org/0009-0000-1348-0566",
+};
+
+export const publications: Publication[] = [
+  {
+    id: "P3",
+    title:
+      "When Verification Passes the Wrong Calculator: A Human-Adjudicated Study of a Guarded Local LLM Pipeline",
+    authors: "M.F. Sindhi, N. Uddin",
+    venue: "Research Square",
+    year: "2026",
+    status: "preprint",
+    href: "https://doi.org/10.21203/rs.3.rs-11311266/v1",
+  },
+  {
+    id: "P2",
+    title:
+      "Do Artificial Masks Represent Natural Missingness? External-Reference Evaluation in County-Level Power-Outage Records",
+    authors: "M.F. Sindhi",
+    venue: "Zenodo",
+    year: "2026",
+    status: "preprint",
+    href: "https://doi.org/10.5281/zenodo.23092741",
+  },
+  {
+    id: "P1",
+    title:
+      "Validation of a Frozen LLM-Based Screening Instrument for Clinical Guideline Literature Screening",
+    authors: "M.F. Sindhi",
+    venue: "Zenodo",
+    year: "2026",
+    status: "preprint",
+    href: "https://doi.org/10.5281/zenodo.22896495",
+    altHref: { label: "Earlier version on SSRN", href: "https://doi.org/10.2139/ssrn.7490218" },
+  },
+  {
+    id: "S2",
+    title: "Approximate Sampling for Randomization Tests: A Total-Variation Certification Framework",
+    authors: "M.F. Sindhi, H. Buksh",
+    venue: "Submitted",
+    year: "2026",
+    status: "submitted",
+  },
+  {
+    id: "S1",
+    title:
+      "Bandwidth, Representation Loss, and Temporal Drift in Quantum Kernel Fraud Detection: A Pre-Specified Falsification Study",
+    authors: "M.F. Sindhi, H. Buksh",
+    venue: "Submitted",
+    year: "2026",
+    status: "submitted",
+  },
+];

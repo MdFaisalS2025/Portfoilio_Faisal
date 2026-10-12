@@ -2,7 +2,7 @@ import { projects } from "./projects";
 import { archiveEntries } from "./archive";
 import { experience } from "./experience";
 import { credentials } from "./credentials";
-import { researchNotes } from "./research";
+import { researchNotes, publications } from "./research";
 import { roleId, capabilityNodes } from "./graph";
 
 export type SearchResultType =
@@ -48,6 +48,10 @@ export function buildSearchIndex(): SearchItem[] {
 
   for (const note of researchNotes) {
     items.push({ type: "Research note", title: note.title, href: "/research" });
+  }
+
+  for (const p of publications) {
+    items.push({ type: "Research note", title: p.title, subtitle: `${p.id} · ${p.venue}`, href: "/research" });
   }
 
   // Sourced from the graph's own capability nodes, not a second list — a

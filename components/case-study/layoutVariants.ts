@@ -11,6 +11,7 @@ export type CaseStudyVariant =
 
 export const CASE_STUDY_VARIANTS: Record<string, CaseStudyVariant> = {
   accesspath: "demo-stacked",
+  plateproof: "demo-stacked",
   raey: "pipeline-horizontal",
   sentinel: "radial-side",
   "swiss-legal-rag": "funnel-stacked",
