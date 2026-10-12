@@ -43,6 +43,19 @@ export const experience: Role[] = [
     ],
   },
   {
+    org: "Solely Active",
+    title: "Technical Product Lead",
+    specialization: "Prelaunch venture",
+    location: "Remote",
+    period: "Sep 2026 – Present",
+    bullets: [
+      "PlateProof, my independent project, was taken up by Solely Active, a sports and wellness venture.",
+      "Lead technology and product direction for its Active Twin concept and coordinate an international team of three exploring food recognition, recommendations, and careful handling of personal data.",
+    ],
+    projectSlug: "plateproof",
+    capabilities: ["Technical Leadership", "Product Discovery", "Team Coordination"],
+  },
+  {
     org: "University of South Florida, Muma College of Business",
     title: "Graduate Teaching Assistant",
     specialization: "Healthcare AI Research & Instruction",

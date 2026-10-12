@@ -258,6 +258,28 @@ export const projects: Project[] = [
       },
     ],
   },
+  {
+    slug: "plateproof",
+    name: "PlateProof",
+    tagline: "Restaurant inspection history and a calibrated risk estimate that respects each jurisdiction's grading",
+    stack: ["Python", "FastAPI", "DuckDB", "scikit-learn", "Streamlit"],
+    timeframe: "2026",
+    problem:
+      "Inspection results are published by each jurisdiction under its own grading system. Collapsing them into one universal score would misrepresent what the records actually say.",
+    approach:
+      "I built a lookup tool for New York City and Florida restaurants that shows each restaurant's official inspection history and a calibrated risk estimate for its next inspection. Each jurisdiction keeps its own grading system and its own model, and a model ships only if it beats baselines. A citation-grounded assistant answers from a fixed set of intents, with an optional local model used only to classify the question.",
+    architectureNote:
+      "Offline stages download the public records, build tables, train and calibrate one model per jurisdiction, and score predictions. The running service reads only precomputed Parquet tables through DuckDB, behind a read-only FastAPI service and a Streamlit interface; it never loads model files. Owner-document extraction runs in short-lived isolated worker processes and does not store uploads.",
+    results:
+      "A working local release covering two jurisdictions. It is not publicly deployed, forecasts are statistical estimates rather than guarantees, and Michelin recognition, where used, is context only and not evidence of food safety. The project was later taken up by Solely Active, where I now lead technology and product direction for its Active Twin concept.",
+    stats: [
+      { label: "Jurisdictions", value: "2" },
+      { label: "Assistant intents", value: "9" },
+    ],
+    repoUrl: "https://github.com/MdFaisalS2025/PlateProof",
+    capabilities: ["Calibration", "Evaluation", "Citation Grounding"],
+    domains: ["Data Products", "Trustworthy Retrieval"],
+  },
 ];
 
 export function getProject(slug: string) {

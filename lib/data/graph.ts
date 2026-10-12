@@ -98,6 +98,13 @@ const CATEGORY_BY_CAPABILITY: Record<string, CapabilityCategory[]> = {
   "Customer Behavior": ["Leadership & Operations"],
   "Retail Operations": ["Leadership & Operations"],
 
+  Calibration: ["Data & Modeling"],
+  DuckDB: ["Data & Modeling"],
+  "scikit-learn": ["Data & Modeling"],
+  "Citation Grounding": ["AI & Retrieval"],
+  Streamlit: ["Systems & Engineering"],
+  "Team Coordination": ["Leadership & Operations"],
+
   SEO: ["Web & Growth"],
   WordPress: ["Web & Growth"],
 };
