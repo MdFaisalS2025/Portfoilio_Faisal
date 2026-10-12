@@ -12,7 +12,7 @@ export type PositionedNode = GraphNode & { x: number; y: number };
 export const VIEW_WIDTH = 2000;
 export const VIEW_HEIGHT = 1080;
 
-export const CAPABILITY_BAND = { left: 150, right: 950 };
+export const CAPABILITY_BAND = { left: 130, right: 890 };
 // PROJECT_X and ROLE_X are pulled further apart than a naive proportional
 // split: with `w-max` sizing (see MapNode's comment), a wrapped project or
 // role label's real width is its actual wrap-width cap, not a fraction of
@@ -148,6 +148,31 @@ function packLane(
     // with the rest of the coordinate system (edges + capability columns).
     return (anchor / availableHeightPx) * VIEW_HEIGHT;
   });
+}
+
+/**
+ * The smallest graph-area height (px) at which both the project and role
+ * lanes fit without their labels overlapping. The homepage map uses this as
+ * a floor so adding nodes grows the map instead of spilling it into the
+ * content below.
+ */
+export function requiredLaneHeightPx(measuredHeights: Map<string, number> | null): number {
+  const laneHeight = (type: "role" | "project", charsPerLine: number) => {
+    const nodes = graphNodes.filter((n) => n.type === type);
+    const heights = nodes.map((n) => {
+      const measured = measuredHeights?.get(n.id);
+      return measured != null
+        ? measured + LABEL_VERTICAL_PADDING_PX
+        : estimateLabelHeightPx(n.label, charsPerLine);
+    });
+    return heights.reduce((a, b) => a + b, 0) + MIN_ROW_GAP_PX * Math.max(0, nodes.length - 1);
+  };
+  return Math.ceil(
+    Math.max(
+      laneHeight("project", PROJECT_CHARS_PER_LINE),
+      laneHeight("role", ROLE_CHARS_PER_LINE)
+    ) + 24
+  );
 }
 
 /**

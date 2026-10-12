@@ -16,13 +16,13 @@ export default function HomePage() {
       </Section>
 
       {/* Full-bleed, not <Section wide> (which caps at --container-wide):
-       * the map is the site's thesis, not a preview of the "real" expanded
-       * view, so it gets the whole browser width and roughly one viewport
-       * of height at md+ (clamped for very short or very tall screens).
-       * The clamp only applies at md+ — the mobile map below is a different,
-       * naturally-scrolling tab/accordion design that shouldn't be
-       * height-constrained. */}
-      <section className="w-full px-[var(--gutter)] pb-16 md:pb-10 bg-systems-grid flex flex-col lg:h-[clamp(36rem,calc(100svh-4rem),68rem)]">
+       * the map is the site's thesis, so it gets the whole browser width.
+       * Its height is not fixed here: SystemsMap sizes itself to roughly one
+       * viewport at md+ but never less than the project and role columns
+       * need, so adding nodes grows the map instead of overlapping the
+       * content below. The mobile map is a different, naturally-scrolling
+       * tab/accordion design. */}
+      <section className="w-full px-[var(--gutter)] pb-16 md:pb-10 bg-systems-grid flex flex-col">
         <div className="flex-none pt-2 pb-6">
           <h2 className="font-mono text-xs uppercase tracking-wide text-espresso-soft mb-2">
             The systems map

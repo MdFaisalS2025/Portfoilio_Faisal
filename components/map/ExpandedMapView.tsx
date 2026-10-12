@@ -137,8 +137,8 @@ export function ExpandedMapView({
               </button>
             </div>
           </div>
-          <div className="mx-auto max-w-[var(--container-wide)] px-[var(--gutter)] pb-10">
-            <SystemsMap showControls interaction={interaction} />
+          <div className="w-full px-[var(--gutter)] pb-10">
+            <SystemsMap showControls fillHeight interaction={interaction} />
           </div>
         </div>
       ) : null}

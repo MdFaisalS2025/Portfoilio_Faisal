@@ -14,7 +14,7 @@ import { useExpandedMapFromHash } from "@/components/map/useExpandedMapFromHash"
  * state, so journeys aren't offered there — the mobile map's own
  * search+category filters cover the same discovery need.
  *
- * The switch is `lg` (1024px), not `md` (768px): the desktop graph's six
+ * The switch is `xl` (1280px), not `lg` (1024px) or `md` (768px): the desktop graph's six
  * capability columns plus a project and a role column need real horizontal
  * room for readable, non-overlapping labels — confirmed empirically, since
  * cramming that many columns into a 768px-wide tablet viewport produces
@@ -27,10 +27,10 @@ export function HomeSystemsMapSection() {
 
   return (
     <div className="flex flex-col gap-10 lg:h-full lg:min-h-0">
-      <div className="hidden lg:flex lg:flex-col lg:flex-1 lg:min-h-0">
+      <div className="hidden xl:flex xl:flex-col xl:flex-1 xl:min-h-0">
         <SystemsMap interaction={interaction} onExpand={map.open} fillHeight />
       </div>
-      <div className="lg:hidden">
+      <div className="xl:hidden">
         <SystemsMapMobile />
       </div>
 

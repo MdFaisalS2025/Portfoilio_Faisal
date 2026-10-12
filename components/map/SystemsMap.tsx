@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import {
   computeLayout,
+  requiredLaneHeightPx,
   edgesWithPositions,
   capabilityColumnPositions,
   VIEW_WIDTH,
@@ -152,6 +153,10 @@ export function SystemsMap({
     [graphHeightPx, measuredLabelHeights]
   );
   const edges = useMemo(() => edgesWithPositions(positioned), [positioned]);
+  const minGraphHeightPx = useMemo(
+    () => requiredLaneHeightPx(measuredLabelHeights),
+    [measuredLabelHeights]
+  );
   const capabilityHeadings = useMemo(() => capabilityColumnPositions(), []);
   const reducedMotion = useReducedMotion();
   const ownInteraction = useGraphInteraction();
@@ -280,7 +285,15 @@ export function SystemsMap({
             </span>
           </div>
 
-          <div ref={graphAreaRef} className="relative flex-1 min-h-0">
+          <div
+            ref={graphAreaRef}
+            className="relative flex-1 min-h-0"
+            style={
+              fillHeight
+                ? { minHeight: `max(${minGraphHeightPx}px, clamp(32rem, calc(100svh - 10rem), 60rem))` }
+                : undefined
+            }
+          >
             {/* `preserveAspectRatio="none"` stretches the viewBox to
              * exactly fill this element's own box, non-uniformly in x/y if
              * needed: the same box the HTML node layer below fills via
