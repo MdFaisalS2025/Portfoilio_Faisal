@@ -57,6 +57,9 @@ export function HeroReveal() {
           <Button href="/resume.pdf" variant="secondary">
             Résumé
           </Button>
+          <Button href="/cv.pdf" variant="secondary">
+            CV
+          </Button>
           <Button href="/contact" variant="secondary">
             Contact
           </Button>
