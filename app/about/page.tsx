@@ -4,6 +4,7 @@ import { Section, Eyebrow, Heading } from "@/components/ui/Section";
 import { Badge } from "@/components/ui/Badge";
 import { education, experience } from "@/lib/data/experience";
 import { roleId } from "@/lib/data/graph";
+import { WhatIGotWrong } from "@/components/home/WhatIGotWrong";
 
 export const metadata: Metadata = {
   title: "About · Mohamed Faisal Sindhi",
@@ -33,7 +34,7 @@ const timeline = [
   },
   {
     place: "Tampa, Florida",
-    text: "Pivoted into an M.S. in AI & Business Analytics at USF, then into healthcare AI research, building SENTINEL and teaching 500+ students along the way.",
+    text: "Pivoted into an M.S. in AI & Business Analytics at USF, then into healthcare AI research, building SENTINEL, teaching 500+ students, and publishing three preprints along the way.",
     projectSlug: "sentinel",
   },
   {
@@ -56,10 +57,12 @@ export default function AboutPage() {
         <Eyebrow>About</Eyebrow>
         <Heading>Lifelong learner. Founder. Builder at heart.</Heading>
         <p className="text-lg text-espresso-soft max-w-2xl leading-relaxed">
-          I keep shipping across very different domains: web, blockchain,
-          healthcare AI, applied machine learning, because I&apos;d rather learn
-          a stack by building in it than by staying in one lane. Curiosity
-          stays constant while the stack keeps changing.
+          I grew up in Bahrain, started in web work in Chennai, spent two
+          years as a blockchain engineer in the UAE, and now study and build
+          trustworthy AI in Tampa. I treat a wrong answer in a hospital or a
+          visa question as an engineering problem, so I publish the
+          evaluations that didn&apos;t go my way as readily as the ones that
+          did.
         </p>
       </Section>
 
@@ -132,6 +135,16 @@ export default function AboutPage() {
           className="text-sm font-medium text-terracotta-dark hover:underline"
         >
           See all certifications, courses, and program completions →
+        </Link>
+      </Section>
+
+      <Section className="pt-0!">
+        <WhatIGotWrong />
+        <Link
+          href="/research"
+          className="inline-block mt-6 text-sm font-medium text-terracotta-dark hover:underline"
+        >
+          Read the preprints and research notes →
         </Link>
       </Section>
     </>

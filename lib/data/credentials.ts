@@ -35,6 +35,28 @@ export type Credential = {
 
 export const credentials: Credential[] = [
   {
+    name: "AI Engineer for Data Scientists Associate",
+    issuer: "DataCamp",
+    type: "certification",
+    issued: "Sep 2026",
+    group: "AI & Data",
+    featured: true,
+  },
+  {
+    name: "Probability for AI",
+    issuer: "Stanford University",
+    type: "course",
+    issued: "In progress",
+    group: "Academic Foundations",
+  },
+  {
+    name: "GCI World 2026",
+    issuer: "Matsuo-Iwasawa Lab, University of Tokyo",
+    type: "program",
+    issued: "In progress",
+    group: "AI & Data",
+  },
+  {
     name: "Oracle Cloud Infrastructure 2025 Certified Generative AI Professional",
     issuer: "Oracle",
     type: "certification",
