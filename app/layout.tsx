@@ -5,6 +5,7 @@ import "./globals.css";
 import { NavBar } from "@/components/ui/NavBar";
 import { Footer } from "@/components/ui/Footer";
 import { PageTransition } from "@/components/layout/PageTransition";
+import { SITE_URL, SITE_TITLE, SITE_DESCRIPTION } from "@/lib/site";
 
 const bodyFont = Plus_Jakarta_Sans({
   variable: "--font-body",
@@ -28,15 +29,13 @@ const monoFont = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Mohamed Faisal Sindhi · Founder & AI Engineer",
-  description:
-    "Lifelong learner, founder, and builder at heart. Founder of RAEY, designer of SENTINEL, and AI engineer working across healthcare AI, legal retrieval, and federated learning.",
-  metadataBase: new URL("https://mohamedfaisalsindhi.com"),
+  title: SITE_TITLE,
+  description: SITE_DESCRIPTION,
+  metadataBase: new URL(SITE_URL),
   alternates: { canonical: "/" },
   openGraph: {
-    title: "Mohamed Faisal Sindhi · Founder & AI Engineer",
-    description:
-      "Lifelong learner, founder, and builder at heart. Founder of RAEY, designer of SENTINEL, and AI engineer working across healthcare AI, legal retrieval, and federated learning.",
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
     type: "website",
   },
 };
